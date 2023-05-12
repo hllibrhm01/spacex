@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://spacex-one.vercel.app
+
+# Sitemaps
+Sitemap: https://spacex-one.vercel.app/sitemap.xml

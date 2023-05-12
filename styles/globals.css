@@ -1,0 +1,243 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::selection {
+  /* @apply bg-emerald-400/75 text-gray-900 dark:text-gray-50 dark:bg-emerald-600/60; */
+  @apply bg-accent/75 text-accent-content;
+}
+
+html {
+  @apply scroll-smooth;
+  /* @apply scroll-smooth min-w-[360px]; */
+}
+
+body {
+  @apply transition-colors w-full h-full min-h-screen bg-base-100 text-base-content antialiased;
+}
+
+@layer components {
+  .card.image-full:where(figure) {
+    @apply rounded-none;
+  }
+
+  .card.image-full {
+    @apply before:rounded-none;
+  }
+
+  .launch-stat-term {
+    @apply flex-initial capitalize relative after:[--tw-content:":"] after:inline-block;
+  }
+
+  .card.image-full.op-60 {
+    @apply before:opacity-60;
+  }
+
+  .subtitle {
+    @apply text-2xl lg:text-3xl font-medium transition break-normal md:break-words relative block focus:outline-none;
+    /* @apply text-gray-700 dark:text-gray-300; */
+    @apply after:block after:-bottom-1 after:left-0 after:h-0.5 after:absolute after:transform after:scale-x-0 after:origin-left after:w-full after:transition-transform after:duration-300;
+    @apply group-hover:after:bg-current group-hover:after:scale-x-100 group-hover:text-gray-900 dark:group-hover:text-gray-100;
+    @apply group-focus-within:after:bg-current group-focus-within:after:scale-x-100 group-focus-within:text-gray-900 dark:group-focus-within:text-gray-100;
+  }
+
+  /* .timeline > li:first-child .timeline-point-inner {
+    @apply mt-0;
+  }
+  .timeline > li:last-child .timeline-point-inner {
+    @apply mt-0;
+  }
+  .timeline-point-inner {
+    @apply mt-3;
+  } */
+
+  .launches-grid {
+    --min: 35ch;
+    --gap: theme(spacing.4);
+    display: grid;
+    gap: var(--gap);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--min)), 1fr));
+  }
+
+  /* .payload-card > *:only-child {
+    @apply my-0;
+  } */
+
+  .payload-card > :is(:where([data-testid="flowbite-card"]):only-child){
+    @apply my-0;
+  }
+}
+
+.mouse-tracker {
+  @apply absolute inset-0 z-20;
+}
+
+.tilt-content {
+  --deg: 8deg;
+  --rotX: 0;
+  --rotY: 0;
+  --ps: 800px;
+  @apply transition-all duration-200 bg-center bg-no-repeat bg-[length:auto_112%] relative;
+  @apply after:rounded-lg after:block after:absolute after:inset-0 after:bg-gradient-to-b after:via-transparent after:from-gray-900/50  after:mix-blend-multiply;
+  transform: perspective(var(--ps)) rotateX(var(--rotX)) rotateY(var(--rotY));
+}
+
+.group:hover .tilt-content {
+  background-size: auto 100%;
+}
+
+/* vertical motion */
+.mouse-tracker.r1:hover ~ .tilt-content {
+  --rotX: var(--deg);
+}
+.mouse-tracker.r2:hover ~ .tilt-content {
+  --rotX: calc(var(--deg) * 2 / 3);
+}
+.mouse-tracker.r3:hover ~ .tilt-content {
+  --rotX: calc(var(--deg) * 1 / 3);
+}
+.mouse-tracker.r4:hover ~ .tilt-content {
+  --rotX: calc((var(--deg) * 1 / 3) * -1);
+}
+.mouse-tracker.r5:hover ~ .tilt-content {
+  --rotX: calc((var(--deg) * 2 / 3) * -1);
+}
+.mouse-tracker.r6:hover ~ .tilt-content {
+  --rotX: calc(var(--deg) * -1);
+}
+
+/* horizontal motion */
+.mouse-tracker.c1:hover ~ .tilt-content {
+  --rotY: calc(var(--deg) * -1);
+}
+.mouse-tracker.c2:hover ~ .tilt-content {
+  --rotY: calc((var(--deg) * 2 / 3) * -1);
+}
+.mouse-tracker.c3:hover ~ .tilt-content {
+  --rotY: calc((var(--deg) * 1 / 3) * -1);
+}
+.mouse-tracker.c4:hover ~ .tilt-content {
+  --rotY: calc(var(--deg) * 1 / 3);
+}
+.mouse-tracker.c5:hover ~ .tilt-content {
+  --rotY: calc(var(--deg) * 2 / 3);
+}
+.mouse-tracker.c6:hover ~ .tilt-content {
+  --rotY: var(--deg);
+}
+
+/* underline transition effect */
+.underlined {
+  @apply relative no-underline whitespace-nowrap focus:outline-none block font-medium transition text-lg;
+  @apply after:block after:-bottom-1 after:left-0 after:h-0.5 after:absolute after:transform after:scale-x-0 after:origin-left after:w-full after:transition-transform after:duration-300;
+  @apply text-gray-600 hover:after:bg-current hover:after:scale-x-100 hover:text-gray-900 dark:text-gray-400 hover:dark:text-gray-100;
+  @apply focus:after:bg-current focus:after:scale-x-100 focus:text-gray-900 dark:focus:text-gray-100 rounded ring-offset-4 focus:ring-2;
+}
+
+.underlined.active {
+  @apply after:bg-current after:scale-x-100 text-gray-900 dark:text-gray-100;
+}
+
+.underlined > h1 {
+  @apply text-2xl font-bold text-gray-900 dark:text-gray-100 tracking-wider;
+}
+
+.smol-css-grid {
+  --min: 30ch;
+  --gap: 1rem;
+  @apply grid gap-10;
+  grid-template-columns: repeat(auto-fit, minmax(var(--min), 1fr));
+}
+
+.smol-card-component {
+  --img-ratio: 3/2;
+  @apply flex flex-col gap-4 rounded-box justify-between;
+  /* @apply bg-gray-900 bg-opacity-10 bg-blend-screen; */
+}
+
+.smol-card-component img {
+  aspect-ratio: var(--img-ratio);
+  @apply object-cover w-full rounded-box;
+}
+
+/* aspect-ratio grid */
+.smol-flexbox-grid {
+  --min: 15ch;
+  @apply flex flex-wrap gap-4;
+}
+
+.smol-flexbox-grid > * {
+  @apply flex-auto basis-60;
+}
+
+.smol-aspect-ratio-gallery {
+  --aspect-ratio: 4/3;
+  @apply gap-0;
+}
+
+.smol-aspect-ratio-gallery li {
+  height: max(25vh, 15rem);
+  @apply list-none relative;
+}
+
+@supports (aspect-ratio: 1) {
+  .smol-aspect-ratio-gallery li {
+    aspect-ratio: var(--aspect-ratio);
+    @apply h-auto;
+  }
+}
+
+.smol-aspect-ratio-gallery img {
+  @apply block object-cover w-full h-full;
+}
+
+#__next {
+  @apply w-full min-h-full relative;
+  /* @apply w-full h-full min-h-screen; */
+  /* @apply transition-colors w-full h-full min-h-screen flex flex-col bg-neutral-50 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-50; */
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* min-height: 100vh; */
+}
+
+.skip-nav {
+  @apply absolute px-4 py-3 transition-transform duration-200 transform -translate-y-12 -left-1/4 focus:top-4 focus:translate-y-3 -top-8;
+}
+
+#skip {
+  @apply scroll-mt-5;
+  /* scroll-margin-top: 1.125rem; */
+}
+
+@supports not (backdrop-filter: none) {
+  .sticky-nav {
+    @apply bg-opacity-100 backdrop-filter-none;
+  }
+}
+
+/* html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    color: white;
+    background: black;
+  }
+} */
