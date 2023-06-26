@@ -24,7 +24,7 @@
     "cors": "^2.8.5",
     "daisyui": "^2.43.0",
     "flowbite": "^1.5.5",
-    "flowbite-react": "^0.3.7",
+    "flowbite-react": "^0.4.9",
     "framer-motion": "^9.0.1",
     "motion": "^10.15.3",
     "next": "^13.0.6",
